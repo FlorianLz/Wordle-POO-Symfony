@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Bienvenue sur le jeu du Wordle !</h1>
+    {% if (wordle.essais_restants > 0) and (wordle.status == "PLAYING") %}
+        <p>Il te reste encore {{ wordle.essais_restants }} tentatives</p>
+    {% endif %}
+    {% if (wordle.essais_restants == 0) and (wordle.status == "LOSE") %}
+        <p>Vous avez perdu !</p>
+        <p>Le mot a trouver était : {{ wordle.word }}</p>
+    {% endif %}
+    {% if wordle.status == "WIN" %}
+        <p>Vous avez gagné !</p>
+        <p>Le mot a trouver était bien : {{ wordle.word }}</p>
+    {% endif %}
+
+    {% if wordle.tentatives|length > 0 %}
+        {% if wordle.status == "WIN" %}
+            {% if wordle.tentatives|length > 1 %}
+                <h2>Vous avez trouvé le mot en {{ wordle.tentatives|length }} essais</h2>
+            {% else %}
+                <h2>Vous avez trouvé le mot en {{ wordle.tentatives|length }} essai</h2>
+            {% endif %}
+        {% else %}
+            <h2>Tes derniers essais :</h2>
+        {% endif %}
+
+        {% for tentative in wordle.tentatives %}
+            <div class="proposition">
+                {% for tent in tentative  %}
+                    <span class="{{ tent.status }}">{{ tent.letter }}</span>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if (wordle.essais_restants > 0) and (wordle.status == "PLAYING") %}
+        <h2>Nouvelle tentative :</h2>
+        <form method="GET">
+            <div>
+                {% for key,letter in wordle.tabLettres %}
+                    <input type="text" maxlength="1" name="letter{{ key }}" />
+                {% endfor %}
+            </div>
+            <input type="submit">
+        </form>
+    {% endif %}
+    <div class="divBtn">
+        <button onclick="reloadPage()">Recommencer avec un autre mot</button>
+    </div>
+    <script>
+        function reloadPage() {
+            document.cookie = 'gameData=; Max-Age=-99999999;';
+            window.location.href = '/';
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+.OK {
+    background-color: green;
+}
+.KO {
+    background-color: red;
+}
+.BP {
+    background-color: blue;
+}
+body{
+    background-color: #273c75;
+    max-width: 700px;
+    margin: 0 auto;
+    font-family: Roboto, sans-serif;
+    color: white;
+}
+form{
+    margin-top: 1.3rem;
+}
+form div{
+    display: flex;
+}
+form input[type="text"]{
+    width: 30px;
+    height: 30px;
+    margin-right: 0.5rem;
+}
+form input[type="submit"]{
+    background-color: #00a8ff;
+    padding: 0.5rem 2.5rem;
+    border: none;
+    cursor: pointer;
+    color: white;
+    margin: 1.7rem auto 0;
+}
+div.proposition{
+    display: flex;
+    margin-bottom: 0.5rem;
+}
+span{
+    width: 30px;
+    height: 30px;
+    margin-right: 0.5rem;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button{
+    background-color: #00a8ff;
+    padding: 0.5rem 2.5rem;
+    border: none;
+    cursor: pointer;
+    color: white;
+    margin: 1.5rem auto 0;
+}
+.divBtn{
+    width: 100%;
+    text-align: right;
+}
